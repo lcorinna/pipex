@@ -6,7 +6,7 @@
 /*   By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 15:43:59 by lcorinna          #+#    #+#             */
-/*   Updated: 2022/02/09 16:19:12 by lcorinna         ###   ########.fr       */
+/*   Updated: 2022/02/09 19:33:57 by lcorinna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 
 # include "libft/libft.h"
 
-# include <stdlib.h>
-# include <stdio.h>
 # include <string.h>
-# include <unistd.h>
 # include <sys/wait.h>
 # include <limits.h>
 # include <fcntl.h>
@@ -31,7 +28,7 @@ void	ft_nursery_group(char **argv, char **path, int *pepsi);
 void	ft_middle_group(char **argv, char **path, int *pepsi);
 char	**ft_adding_a_program_to_the_path(char **command, char **path, int i);
 
-void	ft_exit_for_check(char **path, char	**command, int flag);
-int		ft_exit_for_argc(int i);
+void	ft_exit_with_cleaning(char **path, char	**command, int flag);
+int		ft_exit_without_cleaning(int flag);
 
 #endif

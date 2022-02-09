@@ -6,7 +6,7 @@
 #    By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/30 18:08:23 by lcorinna          #+#    #+#              #
-#    Updated: 2022/02/09 12:19:42 by lcorinna         ###   ########.fr        #
+#    Updated: 2022/02/09 19:55:01 by lcorinna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ PIPEX = pipex.c utils.c kindergarten.c hard_workers_go_home.c
 
 OBJ_PIPEX = $(PIPEX:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g #Leaks --atExit -- ./pipex "ls -la"
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g #Leaks --atExit -- ./pipex "ls -la"
 
 PATH_LIBFT = ./libft/
 
