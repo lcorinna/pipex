@@ -6,11 +6,18 @@
 /*   By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:50:38 by lcorinna          #+#    #+#             */
-/*   Updated: 2022/02/09 19:28:44 by lcorinna         ###   ########.fr       */
+/*   Updated: 2022/02/10 17:08:17 by lcorinna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+void	ft__taking_care_of_norminette(char **path, char *str)
+{
+	if (str != NULL)
+		free (str);
+	ft_django_unchained(path);
+}
 
 void	ft_django_unchained(char **arr)
 {
