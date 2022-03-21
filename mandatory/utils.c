@@ -6,11 +6,11 @@
 /*   By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:50:38 by lcorinna          #+#    #+#             */
-/*   Updated: 2022/02/10 17:08:17 by lcorinna         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:51:16 by lcorinna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
 void	ft__taking_care_of_norminette(char **path, char *str)
 {
@@ -19,7 +19,7 @@ void	ft__taking_care_of_norminette(char **path, char *str)
 	ft_django_unchained(path);
 }
 
-void	ft_django_unchained(char **arr)
+int	ft_django_unchained(char **arr)
 {
 	int	i;
 
@@ -33,6 +33,7 @@ void	ft_django_unchained(char **arr)
 		}
 		free(arr);
 	}
+	return (1);
 }
 
 int	ft_creating_a_path(char **envp, int *num)

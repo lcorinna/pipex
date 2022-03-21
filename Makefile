@@ -6,13 +6,14 @@
 #    By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/30 18:08:23 by lcorinna          #+#    #+#              #
-#    Updated: 2022/02/09 19:55:01 by lcorinna         ###   ########.fr        #
+#    Updated: 2022/03/21 16:50:45 by lcorinna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME_PIPEX = pipex
 
-PIPEX = pipex.c utils.c kindergarten.c hard_workers_go_home.c
+PIPEX = ./mandatory/pipex.c ./mandatory/utils.c ./mandatory/kindergarten.c \
+./mandatory/hard_workers_go_home.c
 
 OBJ_PIPEX = $(PIPEX:.c=.o)
 
