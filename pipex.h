@@ -6,7 +6,7 @@
 /*   By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 15:43:59 by lcorinna          #+#    #+#             */
-/*   Updated: 2022/03/21 16:54:08 by lcorinna         ###   ########.fr       */
+/*   Updated: 2022/03/21 19:06:17 by lcorinna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <sys/wait.h>
 # include <limits.h>
 # include <fcntl.h>
-# include <stdio.h>
 
 typedef struct s_data
 {
@@ -33,7 +32,7 @@ typedef struct s_data
 
 int		ft_django_unchained(char **arr);
 int		ft_creating_a_path(char **envp, int *num);
-void	ft__taking_care_of_norminette(char **path, char *str);
+void	ft_taking_care_of_norminette(char **path, char *str);
 
 void	ft_nursery_group(char **argv, t_data *data, char **envp);
 void	ft_middle_group(char **argv, t_data *data, char **envp);

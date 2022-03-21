@@ -6,7 +6,7 @@
 /*   By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 19:00:13 by lcorinna          #+#    #+#             */
-/*   Updated: 2022/03/21 16:51:10 by lcorinna         ###   ########.fr       */
+/*   Updated: 2022/03/21 19:06:29 by lcorinna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	**ft_adding_program_to_the_path(t_data *data, int i)
 	if (path2[i - 1] == NULL)
 		ft_exit_with_cleaning(data, path2, 5);
 	path2[i] = NULL;
-	ft__taking_care_of_norminette(data->path, str);
+	ft_taking_care_of_norminette(data->path, str);
 	return (path2);
 }
 

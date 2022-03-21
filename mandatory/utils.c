@@ -6,13 +6,13 @@
 /*   By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:50:38 by lcorinna          #+#    #+#             */
-/*   Updated: 2022/03/21 16:51:16 by lcorinna         ###   ########.fr       */
+/*   Updated: 2022/03/21 19:06:07 by lcorinna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-void	ft__taking_care_of_norminette(char **path, char *str)
+void	ft_taking_care_of_norminette(char **path, char *str)
 {
 	if (str != NULL)
 		free (str);
