@@ -6,7 +6,7 @@
 #    By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/30 18:08:23 by lcorinna          #+#    #+#              #
-#    Updated: 2022/03/21 19:19:05 by lcorinna         ###   ########.fr        #
+#    Updated: 2022/03/23 17:54:24 by lcorinna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ OBJ_PIPEX = $(PIPEX:.c=.o)
 
 OBJ_PIPEX_B = $(PIPEX_B:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g #Leaks --atExit -- ./pipex
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g #Leaks --atExit -- ./pipex
+
 PATH_LIBFT = ./libft/
 
 LIBFT = libft.a
@@ -40,7 +41,7 @@ $(NAME_PIPEX): $(ALL_O_FILES)
 %.o: %.c pipex.h Makefile
 	cc $(CFLAGS) -c $< -o $@
 
-bonus:
+bonus: fclean
 	make ALL_O_FILES="$(OBJ_PIPEX_B)" all
 
 clean:

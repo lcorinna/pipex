@@ -6,7 +6,7 @@
 /*   By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 15:43:59 by lcorinna          #+#    #+#             */
-/*   Updated: 2022/03/21 19:06:17 by lcorinna         ###   ########.fr       */
+/*   Updated: 2022/03/23 17:58:47 by lcorinna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <sys/wait.h>
 # include <limits.h>
 # include <fcntl.h>
+# include <stdio.h>
 
 typedef struct s_data
 {

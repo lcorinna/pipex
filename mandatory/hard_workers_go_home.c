@@ -6,7 +6,7 @@
 /*   By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 18:50:38 by lcorinna          #+#    #+#             */
-/*   Updated: 2022/03/21 16:51:01 by lcorinna         ###   ########.fr       */
+/*   Updated: 2022/03/23 17:49:50 by lcorinna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	ft_exit_with_cleaning(t_data *data, char **p8, int flag)
 		ft_putstr_fd("Malloc didn't work out in ft_split\n", 2);
 	if (data->fd != -1)
 		close (data->fd);
-	ft_django_unchained(data->path);
 	ft_django_unchained(p8);
+	ft_django_unchained(data->path);
 	ft_django_unchained(data->command);
 	exit(1);
 }
@@ -55,5 +55,5 @@ int	ft_exit_without_cleaning(int flag, int argc)
 		ft_putstr_fd("The \"pipe\" leaked\n", 2);
 	else if (flag == 3)
 		ft_putstr_fd("Malloc didn 't work out in split\n", 2);
-	return (0);
+	return (1);
 }
