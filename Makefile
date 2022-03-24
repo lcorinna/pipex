@@ -6,7 +6,7 @@
 #    By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/30 18:08:23 by lcorinna          #+#    #+#              #
-#    Updated: 2022/03/23 17:54:24 by lcorinna         ###   ########.fr        #
+#    Updated: 2022/03/23 19:28:20 by lcorinna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ libmake:
 $(NAME_PIPEX): $(ALL_O_FILES)
 	cc $(CFLAGS) $(LIBFT) $(ALL_O_FILES) -o $@
 
-%.o: %.c pipex.h Makefile
+%.o: %.c pipex.h pipex_bonus.h Makefile
 	cc $(CFLAGS) -c $< -o $@
 
 bonus: fclean
