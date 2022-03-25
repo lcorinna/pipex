@@ -6,38 +6,38 @@
 /*   By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 16:33:27 by lcorinna          #+#    #+#             */
-/*   Updated: 2022/03/24 16:38:31 by lcorinna         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:26:55 by lcorinna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex_bonus.h"
 
-char	**ft_adding_program_path(t_data *data, int i)
+void	ft_add_program_path(t_bdata *data, int i)
 {
 	char	*str;
-	char	**path2;
 
-	path2 = NULL;
 	str = ft_strjoin("/", data->command[0]);
 	if (str == NULL)
-		ft_exit_with_cleaning(data, path2, 5);
+		ft_exit(data, 7);
 	while (data->path != NULL && data->path[i])
 		i++;
-	path2 = (char **) malloc(sizeof (char *) * (i + 2));
+	data->path2 = (char **) malloc(sizeof (char *) * (i + 2));
+	if (data->path2 == NULL)
+		ft_exit(data, 2);
 	i = 0;
 	while (data->path != NULL && data->path[i])
 	{
-		path2[i] = ft_strjoin(data->path[i], str);
-		if (path2[i] == NULL)
-			ft_exit_with_cleaning(data, path2, 5);
+		data->path2[i] = ft_strjoin(data->path[i], str);
+		if (data->path2[i] == NULL)
+			ft_exit(data, 7);
 		i++;
 	}
-	path2[i++] = ft_strjoin("./", data->command[0]);
-	if (path2[i - 1] == NULL)
-		ft_exit_with_cleaning(data, path2, 5);
-	path2[i] = NULL;
-	ft_taking_care_of_norminette(data->path, str);
-	return (path2);
+	data->path2[i++] = ft_strjoin("./", data->command[0]);
+	if (data->path2[i - 1] == NULL)
+		ft_exit(data, 7);
+	data->path2[i] = NULL;
+	data->path = data->path2;
+	ft_taking_care_of_norminette(data->path2, str);
 }
 
 void	ft_cut_cmd(t_bdata *data, char **argv)
@@ -61,47 +61,141 @@ void	ft_cut_cmd(t_bdata *data, char **argv)
 	}
 }
 
-void	ft_omg_this_full_path(t_bdata *data, char **argv, char **envp)
+void	ft_check_full_path_first(t_bdata *data, char **argv, char **envp)
 {
-	if (access(argv[data->n_cmd][0], F_OK))
+	if (access(argv[data->n_cmd], F_OK))
 		return ;
 	data->fd = open(argv[1], O_RDONLY);
 	if (data->fd == -1)
 		ft_exit(data, 5);
 	if (dup2(data->fd, 0))
 		ft_close_exit(data, 1);
-	if (dup2(data->pipe[1], 1) == -1)
+	if (dup2(data->pipe[data->n_child][1], 1))
 		ft_close_exit(data, 1);
 	ft_cut_cmd(data, argv);
-	if (execve(argv[data->n_cmd], data->command[0], envp))
+	if (execve(argv[data->n_cmd], &data->command[0], envp))
 		ft_close_exit(data, 2);
+}
+
+void	ft_check_full_path_last(t_bdata *data, char **argv, char **envp)
+{
+	if (access(argv[data->n_cmd], F_OK))
+		return ;
+	data->fd = open(argv[data->qtt_cmd + 2], O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (data->fd == -1)
+		ft_exit(data, 5);
+	if (dup2(data->fd, 0))
+		ft_close_exit(data, 1);
+	if (dup2(data->pipe[data->n_child][0], 1))
+		ft_close_exit(data, 1);
+	ft_cut_cmd(data, argv);
+	if (execve(argv[data->n_cmd], &data->command[0], envp))
+		ft_close_exit(data, 2);
+}
+
+void	ft_pipe_closure(t_bdata *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i != data->qtt_cmd)
+	{
+		j = 0;
+		while (j != 2)
+		{
+			if (data->n_child != i)
+			{
+				close(data->pipe[i][j]);
+				close(data->pipe[i][j]);
+			}
+			j++;
+		}
+		i++;
+	}
 }
 
 void	ft_first_entry(t_bdata *data, char **envp, char **argv)
 {
-	close(data->pipe[0]);
+	close(data->pipe[data->n_child][0]);
+	ft_pipe_closure(data);
 	if (argv[data->n_cmd][0] == '/')
-		ft_omg_this_full_path(data, argv, envp);
+		ft_check_full_path_first(data, argv, envp);
 	data->command = ft_split(argv[data->n_cmd], ' ');
 	if (data->command == NULL)
 		ft_exit(data, 6);
-
-	data->path = ft_adding_program_path(data, data->i);
-
+	ft_add_program_path(data, data->i);
 	while (data->fd != 0 && data->path[data->i] != NULL)
 		data->fd = access(data->path[data->i++], F_OK);
+	printf("\nHERE\n\n"); //del
 	if (data->fd == -1)
-		ft_exit_with_cleaning(data, NULL, 1);
+		ft_exit(data, 8);
 	data->i--;
 	data->fd = open(argv[1], O_RDONLY);
 	if (data->fd == -1)
-		ft_exit_with_cleaning(data, NULL, -2);
-		
-	if (dup2(data->fd, 0) == -1)
-		ft_exit_with_cleaning(data, NULL, 3);
-	if (dup2(data->pepsi[1], 1) == -1)
-		ft_exit_with_cleaning(data, NULL, 3);
-		
+		ft_exit(data, 5);
+	if (dup2(data->fd, 0))
+		ft_close_exit(data, 3);
+	if (dup2(data->pipe[data->n_child][1], 1))
+		ft_close_exit(data, 3);
+	if (execve(data->path[data->i], data->command, envp))
+		ft_close_exit(data, 4);
+}
+
+void	ft_last_entry(t_bdata *data, char **envp, char **argv)
+{
+	close(data->pipe[data->n_child][1]);
+	ft_pipe_closure(data);
+	if (argv[data->n_cmd][0] == '/')
+		ft_check_full_path_last(data, argv, envp);
+	data->command = ft_split(argv[data->n_cmd], ' ');
+	if (data->command == NULL)
+		ft_exit(data, 6);
+	ft_add_program_path(data, data->i);
+	while (data->fd != 0 && data->path[data->i] != NULL)
+		data->fd = access(data->path[data->i++], F_OK);
+	if (data->fd == -1)
+		ft_exit(data, 8);
+	data->i--;
+	data->fd = open(argv[data->qtt_cmd + 2], O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (data->fd == -1)
+		ft_exit(data, 5);
+	if (dup2(data->fd, 0))
+		ft_close_exit(data, 3);
+	if (dup2(data->pipe[data->n_child][0], 1))
+		ft_close_exit(data, 3);
+	if (execve(data->path[data->i], data->command, envp))
+		ft_close_exit(data, 4);
+}
+
+void	ft_routine(t_bdata *data, char **envp, char **argv)
+{
+	close(data->pipe[data->n_child][1]);
+	ft_pipe_closure(data);
+	if (argv[data->n_cmd][0] == '/')
+	{
+		if (access(argv[data->n_cmd], F_OK) == 0)
+		{
+			if (dup2(data->fd, 0))
+				ft_close_exit(data, 1);
+			if (dup2(data->pipe[data->n_child][0], 1))
+				ft_close_exit(data, 1);
+			ft_cut_cmd(data, argv);
+			if (execve(argv[data->n_cmd], &data->command[0], envp))
+				ft_close_exit(data, 2);
+		}
+	}
+	data->command = ft_split(argv[data->n_cmd], ' ');
+	if (data->command == NULL)
+		ft_exit(data, 6);
+	ft_add_program_path(data, data->i);
+	while (data->fd != 0 && data->path[data->i] != NULL)
+		data->fd = access(data->path[data->i++], F_OK);
+	if (data->fd == -1)
+		ft_exit(data, 8);
+	data->i--;
+	if (dup2(data->pipe[data->n_child][0], 1))
+		ft_close_exit(data, 3);
 	if (execve(data->path[data->i], data->command, envp) == -1)
-		ft_exit_with_cleaning(data, NULL, 4);
+		ft_close_exit(data, 4);
 }

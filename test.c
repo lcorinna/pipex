@@ -6,37 +6,62 @@
 /*   By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 12:14:08 by lcorinna          #+#    #+#             */
-/*   Updated: 2022/03/24 12:49:24 by lcorinna         ###   ########.fr       */
+/*   Updated: 2022/03/25 15:33:27 by lcorinna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+// int	input(int	**matrix, int *n, int *m)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = 0;
+// 	scanf("%d %d", n, m);
+// 	printf("n - %d\n", *n);
+// 	printf("m - %d\n", *m);
+// 	matrix = malloc(sizeof(int *) * *n);
+// 	while (i < *n)
+// 		matrix[i++] = malloc(sizeof(int) * *m);
+// 	i = -1;
+// 	j = 0;
+// 	while (++i < *n)
+// 	{
+// 		// printf("i - %d\n", i);
+// 		while (j < *m)
+// 		{
+// 			scanf("%d", &matrix[i][j++]);
+// 			// printf("matrix[i][j++] - %d\n", matrix[i][j++]);
+// 		}
+// 	}
+// 	i = 0;
+// 	j = 0;
+// 	while (i < *n)
+// 	{
+// 		printf("i - %d\n", i);
+// 		while (j < *m)
+// 		{
+// 			printf("matrix[%d][%d] - %d\n", i, j, matrix[i][j]);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// 	return (0);
+// }
 
 int	main(int argc, char **argv)
 {
-	char	*str;
+	// int		**matrix;
+	// int		n;
+	// int		m;
+	// int		res;
 
-	if (argv[2][0] == '/')
-		printf("1 argv %s\n", argv[2]);
-	else
-		printf("2 argv %s\n", argv[2]);
-	str = argv[2];
-	argc = 0;
-	while (*str)
-	{
-		if (*str == '/')
-			argc++;
-		str++;
-	}
-	printf("1 argc %d\n", argc);
-	str = argv[2];
-	while (argc)
-	{
-		if (*str == '/')
-			argc--;
-		str++;
-	}
-	printf("2 str %s\n", str);
-	printf("2 argc %d\n", argc);
+	// matrix = NULL;
+	// res = input(matrix, &n, &m);
+	printf("%d\n", argc);
+	argv = NULL;
 	return (0);
 }
