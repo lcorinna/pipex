@@ -6,7 +6,7 @@
 /*   By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 15:43:59 by lcorinna          #+#    #+#             */
-/*   Updated: 2022/03/25 16:05:40 by lcorinna         ###   ########.fr       */
+/*   Updated: 2022/03/31 19:20:23 by lcorinna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft/libft.h"
 # include "./pipex.h"
+# include <sys/wait.h>
 
 typedef struct s_bdata
 {
@@ -36,7 +37,7 @@ void	ft_filling_data(t_bdata *data, int argc, char **envp);
 void	ft_memory_allocation(t_bdata *data, int argc);
 
 void	ft_close_exit(t_bdata *data, int flag);
-void	ft_cleaning_memory(t_bdata *data);
+void	ft_cleaning_memory(t_bdata *data, int flag);
 void	ft_exit(t_bdata *data, int flag);
 
 void	ft_add_program_path(t_bdata *data, int i);

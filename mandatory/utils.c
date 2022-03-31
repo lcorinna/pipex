@@ -6,7 +6,7 @@
 /*   By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:50:38 by lcorinna          #+#    #+#             */
-/*   Updated: 2022/03/24 18:18:08 by lcorinna         ###   ########.fr       */
+/*   Updated: 2022/03/31 13:27:04 by lcorinna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	ft_django_unchained(char **arr)
 	{
 		while (arr[i])
 		{
+			// printf("arr[%d] %s \n", i, arr[i]); //del
 			free(arr[i]);
 			i++;
 		}
@@ -44,7 +45,6 @@ int	ft_creating_a_path(char **envp, int *num)
 	check = 0;
 	while (envp[*num] != NULL && check != 4)
 		check = ft_memcmp("PATH", envp[(*num)++], 4);
-	*num -= 2;
 	if (check != 4)
 		return (0);
 	(*num)++;

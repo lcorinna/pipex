@@ -6,37 +6,37 @@
 /*   By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 18:21:55 by lcorinna          #+#    #+#             */
-/*   Updated: 2022/03/25 17:39:26 by lcorinna         ###   ########.fr       */
+/*   Updated: 2022/03/31 19:25:54 by lcorinna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex_bonus.h"
 
-void	ft_cleaning_memory(t_bdata *data)
+void	ft_cleaning_memory(t_bdata *data, int flag)
 {
 	int	i;
 
 	i = 0;
 	if (data->pipe != NULL)
 	{
-		printf("\nhere\n\n"); //del
-		printf("data->n_cmd %d\n", data->n_cmd); //del
 		while (i != data->qtt_cmd)
 		{
-			printf("data->pipe[%d] - %p\n", i, data->pipe[i]); //del
 			free(data->pipe[i]);
 			i++;
 		}
 		free(data->pipe);
 		data->pipe = NULL;
 	}
-	printf("data->path %p\n", data->path); //del
-	if (data->path != NULL)
+	// printf("data->path %p\n", data->path); //del
+	if (flag == 1 && data->path != NULL)
 		ft_django_unchained(data->path);
-	printf("data->cmd %p\n", data->cmd); //del
+	// printf("data->path2 %p\n", data->path2); //del
+	if (flag == 2 && data->path2 != NULL)
+		ft_django_unchained(data->path);
+	// printf("data->cmd %p\n", data->cmd); //del
 	if (data->cmd != NULL)
 		ft_django_unchained(data->cmd);
-	printf("data->path2 %p\n", data->path2); //del
+	// printf("data->path2 %p\n", data->path2); //del
 	if (data->path2 != NULL)
 		ft_django_unchained(data->path2);
 }
@@ -58,9 +58,7 @@ Try writing ./pipex file 1 cmd1 cmd2 cmd3 ... cmdn file2\n", 2);
 		ft_putstr_fd("The \"split\" function does not work\n", 2);
 	else if (flag == 7)
 		ft_putstr_fd("The \"strjoin\" function does not work\n", 2);
-	else if (flag == 8)
-		ft_putstr_fd("The \"access\" function does not work\n", 2);
-	ft_cleaning_memory(data);
+	ft_cleaning_memory(data, 1);
 	exit(1);
 }
 
@@ -71,10 +69,13 @@ void	ft_close_exit(t_bdata *data, int flag)
 	else if (flag == 2)
 		ft_putstr_fd("The \"execve\" function does not work\n", 2);
 	else if (flag == 3)
-		ft_putstr_fd("The \"dup2\" function does not work\n", 2);
+		ft_putstr_fd("The \"access\" function does not work\n", 2);
 	else if (flag == 4)
+		ft_putstr_fd("The \"dup2\" function does not work\n", 2);
+	else if (flag == 5)
 		ft_putstr_fd("The \"execve\" function does not work\n", 2);
-	close(data->fd);
-	ft_cleaning_memory(data);
+	if (flag < 3)
+		close(data->fd);
+	ft_cleaning_memory(data, 2);
 	exit(1);
 }
