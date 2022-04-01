@@ -6,7 +6,7 @@
 #    By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/30 18:08:23 by lcorinna          #+#    #+#              #
-#    Updated: 2022/03/31 18:55:13 by lcorinna         ###   ########.fr        #
+#    Updated: 2022/04/01 17:16:42 by lcorinna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ NAME_PIPEX = pipex
 PIPEX = ./mandatory/pipex.c ./mandatory/utils.c ./mandatory/kindergarten.c \
 ./mandatory/hard_workers_go_home.c
 
-PIPEX_B = ./bonus/pipex_bonus.c ./bonus/pipex_utils.c ./mandatory/utils.c \
-./bonus/pipes.c ./bonus/pipes_second.c
+PIPEX_B = ./bonus/pipex_bonus.c ./bonus/pipex_utils.c ./bonus/pipes.c \
+./bonus/pipes_second.c
 
 OBJ_PIPEX = $(PIPEX:.c=.o)
 
@@ -35,14 +35,14 @@ all: libmake $(NAME_PIPEX)
 libmake:
 	make -C $(PATH_LIBFT)
 	cp $(PATH_LIBFT)$(LIBFT) $(LIBFT)
-		
+
 $(NAME_PIPEX): $(ALL_O_FILES)
 	cc $(CFLAGS) $(LIBFT) $(ALL_O_FILES) -o $@
 
 %.o: %.c pipex.h pipex_bonus.h Makefile
 	cc $(CFLAGS) -c $< -o $@
 
-bonus: #fclean
+bonus:
 	make ALL_O_FILES="$(OBJ_PIPEX_B)" all
 
 clean:

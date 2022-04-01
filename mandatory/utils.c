@@ -6,7 +6,7 @@
 /*   By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 17:50:38 by lcorinna          #+#    #+#             */
-/*   Updated: 2022/03/31 13:27:04 by lcorinna         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:14:32 by lcorinna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	ft_django_unchained(char **arr)
 	{
 		while (arr[i])
 		{
-			// printf("arr[%d] %s \n", i, arr[i]); //del
 			free(arr[i]);
 			i++;
 		}
