@@ -6,7 +6,7 @@
 /*   By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 15:43:59 by lcorinna          #+#    #+#             */
-/*   Updated: 2022/04/01 17:31:29 by lcorinna         ###   ########.fr       */
+/*   Updated: 2022/04/02 16:58:41 by lcorinna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ typedef struct s_bdata
 	char	**command;
 	int		i;
 	char	**path2;
+
+	char	**ar;
+	char	**en;
+	int		size_st;
 }	t_bdata;
 
 void	ft_making_processes(t_bdata *data, char **argv, char **envp);
@@ -54,4 +58,12 @@ void	ft_check_full_path_first(t_bdata *data, char **argv, char **envp);
 void	ft_check_full_path_last(t_bdata *data, char **argv, char **envp);
 void	ft_check_full_path_routine(t_bdata *data, char **argv, char **envp);
 
-#endif
+void	ft_filling_struct(t_bdata *data, char **argv, char **envp, int argc);
+void	ft_read_in_pipe(t_bdata *data);
+void	ft_go_to_fork(t_bdata *data, int i);
+void	ft_here_doc(t_bdata *data, char **argv, char **envp, int argc);
+
+void	ft_from_pipe_to_pipe(t_bdata *data);
+void	ft_writing_to_file(t_bdata *data);
+
+#endif 

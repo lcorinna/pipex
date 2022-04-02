@@ -6,7 +6,7 @@
 /*   By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 17:27:29 by lcorinna          #+#    #+#             */
-/*   Updated: 2022/04/01 17:30:30 by lcorinna         ###   ########.fr       */
+/*   Updated: 2022/04/02 17:14:37 by lcorinna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	ft_check_full_path_first(t_bdata *data, char **argv, char **envp)
 	close(data->fd);
 	close(data->pipe[data->n_child][1]);
 	execve(argv[data->n_cmd], &data->command[0], envp);
-	free(data->command);
 	ft_close_exit(data, 2);
 }
 
@@ -72,7 +71,6 @@ void	ft_check_full_path_last(t_bdata *data, char **argv, char **envp)
 	close(data->fd);
 	close(data->pipe[data->n_child - 1][0]);
 	execve(argv[data->n_cmd], &data->command[0], envp);
-	free(data->command);
 	ft_close_exit(data, 2);
 }
 
@@ -88,6 +86,5 @@ void	ft_check_full_path_routine(t_bdata *data, char **argv, char **envp)
 	close(data->pipe[data->n_child - 1][0]);
 	close(data->pipe[data->n_child][1]);
 	execve(argv[data->n_cmd], &data->command[0], envp);
-	free(data->command);
 	ft_exit(data, 9);
 }

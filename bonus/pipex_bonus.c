@@ -6,7 +6,7 @@
 /*   By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 18:10:13 by lcorinna          #+#    #+#             */
-/*   Updated: 2022/04/01 19:09:34 by lcorinna         ###   ########.fr       */
+/*   Updated: 2022/04/02 18:22:24 by lcorinna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,8 @@ int	main(int argc, char **argv, char **envp)
 	t_bdata	data;
 
 	data = (t_bdata){};
-	if (ft_memcmp("here_doc", argv[1], 9) == 9)
-	{
-		ft_here_doc(data, argv);
-	}
+	if (ft_memcmp("here_doc", argv[1], 9) == 9 && argc == 6)
+		ft_here_doc(&data, argv, envp, argc);
 	else
 	{
 		ft_filling_data(&data, argc, envp);

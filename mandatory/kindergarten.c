@@ -6,7 +6,7 @@
 /*   By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 19:00:13 by lcorinna          #+#    #+#             */
-/*   Updated: 2022/03/24 18:27:48 by lcorinna         ###   ########.fr       */
+/*   Updated: 2022/04/02 18:31:36 by lcorinna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	ft_middle_group(char **argv, t_data *data, char **envp)
 		ft_exit_with_cleaning(data, NULL, 3);
 	if (dup2(data->pepsi[0], 0) == -1)
 		ft_exit_with_cleaning(data, NULL, 3);
+	close(data->fd);
+	close(data->pepsi[0]);
 	if (execve(data->path[data->i], data->command, envp) == -1)
 		ft_exit_with_cleaning(data, NULL, 4);
 }
@@ -84,6 +86,8 @@ void	ft_nursery_group(char **argv, t_data *data, char **envp)
 		ft_exit_with_cleaning(data, NULL, 3);
 	if (dup2(data->pepsi[1], 1) == -1)
 		ft_exit_with_cleaning(data, NULL, 3);
+	close(data->fd);
+	close(data->pepsi[1]);
 	if (execve(data->path[data->i], data->command, envp) == -1)
 		ft_exit_with_cleaning(data, NULL, 4);
 }

@@ -6,7 +6,7 @@
 /*   By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 19:26:19 by lcorinna          #+#    #+#             */
-/*   Updated: 2022/04/01 19:19:58 by lcorinna         ###   ########.fr       */
+/*   Updated: 2022/04/02 17:13:15 by lcorinna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*ft_substr_gnl(char *s, unsigned int start, size_t len)
 	int		count;
 
 	i = 0;
-	count = ft_strlen(s) - start;
+	count = ft_strlen_gnl(s) - start;
 	if (count > (int) len)
 		count = (int) len;
 	if (count <= 0)
@@ -71,7 +71,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 
 	p = 0;
 	i = 0;
-	join = (char *) malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	join = malloc(sizeof(char) * (ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1));
 	if (join == NULL)
 		return (NULL);
 	if (s1 != NULL)

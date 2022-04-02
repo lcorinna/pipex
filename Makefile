@@ -6,7 +6,7 @@
 #    By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/30 18:08:23 by lcorinna          #+#    #+#              #
-#    Updated: 2022/04/01 17:16:42 by lcorinna         ###   ########.fr        #
+#    Updated: 2022/04/02 18:08:11 by lcorinna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,13 @@ PIPEX = ./mandatory/pipex.c ./mandatory/utils.c ./mandatory/kindergarten.c \
 ./mandatory/hard_workers_go_home.c
 
 PIPEX_B = ./bonus/pipex_bonus.c ./bonus/pipex_utils.c ./bonus/pipes.c \
-./bonus/pipes_second.c
+./bonus/pipes_second.c ./bonus/here_doc.c ./bonus/here_doc_second.c
 
 OBJ_PIPEX = $(PIPEX:.c=.o)
 
 OBJ_PIPEX_B = $(PIPEX_B:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g #Leaks --atExit -- ./pipex
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address #Leaks --atExit -- ./pipex
 
 PATH_LIBFT = ./libft/
 
