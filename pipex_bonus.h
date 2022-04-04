@@ -6,7 +6,7 @@
 /*   By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 15:43:59 by lcorinna          #+#    #+#             */
-/*   Updated: 2022/04/02 16:58:41 by lcorinna         ###   ########.fr       */
+/*   Updated: 2022/04/02 19:02:38 by lcorinna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ void	ft_read_in_pipe(t_bdata *data);
 void	ft_go_to_fork(t_bdata *data, int i);
 void	ft_here_doc(t_bdata *data, char **argv, char **envp, int argc);
 
+void	ft_cut_cmd_h(t_bdata *data, int cmd);
+void	ft_full_path_ptp(t_bdata *data);
 void	ft_from_pipe_to_pipe(t_bdata *data);
+void	ft_full_path_wtf(t_bdata *data);
 void	ft_writing_to_file(t_bdata *data);
 
 #endif 

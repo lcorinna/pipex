@@ -6,7 +6,7 @@
 /*   By: lcorinna <lcorinna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 17:27:29 by lcorinna          #+#    #+#             */
-/*   Updated: 2022/04/02 17:14:37 by lcorinna         ###   ########.fr       */
+/*   Updated: 2022/04/02 19:08:17 by lcorinna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@ void	ft_check_full_path_last(t_bdata *data, char **argv, char **envp)
 {
 	if (access(argv[data->n_cmd], F_OK))
 		return ;
-	data->fd = open(argv[data->qtt_cmd + 2], O_CREAT | O_RDWR | O_TRUNC, 0644);
+	data->fd = open(argv[data->qtt_cmd + 3], O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (data->fd == -1)
 		ft_exit(data, 5);
-	if (dup2(data->fd, 0) == -1)
+	if (dup2(data->fd, 1) == -1)
 		ft_close_exit(data, 1);
-	if (dup2(data->pipe[data->n_child][0], 1) == -1)
+	if (dup2(data->pipe[data->n_child - 1][0], 0) == -1)
 		ft_close_exit(data, 1);
 	ft_cut_cmd(data, argv);
 	close(data->fd);
